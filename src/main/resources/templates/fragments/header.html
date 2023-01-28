@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:fragment="header">
+    <nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+            <img src="images/logo.png" width="180" height="50">
+        </a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/item/new">NEW</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link" href="/item/shirt">티셔츠</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link" href="/item/pants">팬츠</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link" href="/item/shoes">신발</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link" href="/item/outer">아우터</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link" href="/members/logout">로그아웃</a>
+                </li>
+            </ul>
+            <form class="form-inline my-0 my-lg-0" th:action="@{/}" method="get">
+                <input name="searchQuery" class="form-control mr-sm-2" type="search" placeholder="HS-mall" aria-label="Search">
+                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">검색</button>
+            </form>
+        </div>
+    </nav>
+</div>
+
+</html>
