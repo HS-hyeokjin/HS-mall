@@ -33,4 +33,13 @@ public class UserController {
             return "redirect:/";
         }
 
+        @GetMapping(value = "/login")
+        public String loginUser(){
+            return "/user/userLoginForm";
+        }
+        @GetMapping(value = "/login/error")
+        public String loginError(Model model){
+            model.addAttribute("loginErrorMsg","아이디 또는 비밀번호를 확인해 주세요");
+            return "user/userLoginForm";
+        }
 }

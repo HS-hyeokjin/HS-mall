@@ -39,7 +39,7 @@ public class User {
         user.setAddress(userRegisterFormDto.getAddress());
         String password = passwordEncoder.encode(userRegisterFormDto.getPassword());
         user.setPassword(password);
-        user.setRole(Role.USER);
+        user.setRole(Role.ADMIN);
         return user;
     }
 }
