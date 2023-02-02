@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table
 @Getter
 @Setter
-public class User {
+public class User extends BaseEntity{
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
