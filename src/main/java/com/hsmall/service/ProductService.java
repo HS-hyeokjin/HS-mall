@@ -3,11 +3,14 @@ package com.hsmall.service;
 import com.hsmall.dto.ProductFormDto;
 import com.hsmall.dto.ProductImageDto;
 import com.hsmall.dto.MainProductDto;
+import com.hsmall.dto.ProductSearchDto;
 import com.hsmall.entity.Product;
 import com.hsmall.entity.ProductImage;
 import com.hsmall.repository.ProductImageRepository;
 import com.hsmall.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -79,5 +82,15 @@ public class ProductService {
         }
 
         return product.getId();
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Product> getAdminProductPage(ProductSearchDto productSearchDto, Pageable pageable){
+        return productRepository.getAdminProductPage(productSearchDto, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MainProductDto> getMainProductPage(ProductSearchDto productSearchDto,Pageable pageable){
+        return productRepository.getMainProductPage(productSearchDto, pageable);
     }
 }

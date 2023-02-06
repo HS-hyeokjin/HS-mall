@@ -3,14 +3,14 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div th:fragment="header">
-    <nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="/">
-            <img src="./images/logo.png" width="180" height="50">
+            <img src="https://github.com/HS-hyeokjin/HS-mall/blob/main/src/main/resources/static/images/logo.png?raw=true" width="180" height="50">
         </a>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -37,7 +37,7 @@
                     <a class="nav-link" href="/cart">장바구니</a>
                 </li>
                 <li class="nav-item" sec:authorize="isAnonymous()" >
-                    <a class="nav-link" href="/user/login">로그인</a>
+                    <a class="nav-link" href="/user/login" >로그인</a>
                 </li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a class="nav-link" href="/user/logout">로그아웃</a>
@@ -46,7 +46,7 @@
                     <a class="nav-link" href="/admin/product/register">등록</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                    <a class="nav-link" href="/admin/product/aa">관리</a>
+                    <a class="nav-link" href="/admin/products">관리</a>
                 </li>
 
 
