@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div th:fragment="header">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-sm bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -16,45 +16,49 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item" >
-                    <a class="nav-link" href="/product/new">NEW</a>
+                    <a class="nav-link" href="/product/new" style="color: black" ><b>NEW</b></a>
                 </li>
                 <li class="nav-item" >
-                    <a class="nav-link" href="/product/outer">아우터</a>
+                    <a class="nav-link" href="/product/outer" style="color: dimgray" >아우터</a>
                 </li>
                 <li class="nav-item" >
-                    <a class="nav-link" href="/product/top">상의</a>
+                    <a class="nav-link" href="/product/top" style="color: dimgray">상의</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/product/pants">팬츠</a>
+                    <a class="nav-link" href="/product/pants" style="color: dimgray">팬츠</a>
                 </li>
                 <li class="nav-item" >
-                    <a class="nav-link" href="/product/shoes">신발</a>
+                    <a class="nav-link" href="/product/shoes" style="color: dimgray">신발</a>
                 </li>
                 <li class="nav-item" >
-                    <a class="nav-link" href="/product/accessories">악세사리</a>
+                    <a class="nav-link" href="/product/accessories" style="color: dimgray">악세사리</a>
                 </li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link" href="/cart">장바구니</a>
+                    <a class="nav-link" href="/cart" style="color: dimgray">장바구니</a>
                 </li>
-                <li class="nav-item" sec:authorize="isAnonymous()" >
-                    <a class="nav-link" href="/user/login" >로그인</a>
-                </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <a class="nav-link" href="/user/logout">로그아웃</a>
-                </li>
-                <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                    <a class="nav-link" href="/admin/product/register">등록</a>
-                </li>
-                <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                    <a class="nav-link" href="/admin/products">관리</a>
-                </li>
-
-
             </ul>
-            <form class="form-inline my-0 my-lg-0" th:action="@{/}" method="get">
-                <input name="searchQuery" class="form-control mr-sm-2" type="search" placeholder="HS-mall" aria-label="Search">
-                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">검색</button>
-            </form>
+            <div class="d-flex" style=>
+                <ul style="list-style:none; padding:0; margin:0">
+                    <li class="nav-item" sec:authorize="isAnonymous()" >
+                        <a class="nav-link" href="/user/login" style="color: dimgray">로그인</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" href="/user/logout" style="color: dimgray">로그아웃</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                        <a class="nav-link" href="/admin/product/register" >등록</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                        <a class="nav-link" href="/admin/products">관리</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-0 my-lg-0" th:action="@{/}" method="get">
+                    <input name="searchQuery" class="form-control mr-sm-2" type="search" placeholder="HS-mall" aria-label="Search">
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">검색</button>
+                </form>
+            </div>
+
+
         </div>
     </nav>
 </div>

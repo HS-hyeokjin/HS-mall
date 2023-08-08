@@ -1,5 +1,6 @@
 package com.hsmall.controller;
 
+import com.hsmall.constant.ProductCategory;
 import com.hsmall.dto.MainProductDto;
 import com.hsmall.dto.ProductFormDto;
 import com.hsmall.dto.ProductSearchDto;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
@@ -28,7 +30,7 @@ import java.util.Optional;
 public class ProductController {
 
     private final ProductService productService;
-
+    //상품등록
     @GetMapping(value = "admin/product/register")
     public String productForm(Model model) {
         model.addAttribute("productFormDto", new ProductFormDto());
@@ -105,8 +107,11 @@ public class ProductController {
 
     }
 
-    @GetMapping(value = "product/outer")
-    public String main(ProductSearchDto productSearchDto, Optional<Integer> page, Model model){
+    @GetMapping(value = "product/{productCategory}")
+    public String main(@PathVariable("productCategory") String productCategory, ProductSearchDto productSearchDto, Optional<Integer> page, Model model) {
+        if (!StringUtils.isEmpty(productCategory)) {
+            productSearchDto.setProductCategory(ProductCategory.fromValue(productCategory));
+        }
 
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
         Page<MainProductDto> products = productService.getMainProductPage(productSearchDto, pageable);
@@ -117,4 +122,6 @@ public class ProductController {
 
         return "product/outer";
     }
+
+
 }

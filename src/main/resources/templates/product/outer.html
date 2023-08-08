@@ -35,14 +35,14 @@
 
     <div class="row">
         <th:block th:each="product, status: ${products.getContent()}">
-            <div class="col-md-4 margin">
+            <div class="col-md-4 margin" >
                 <div class="card">
                     <a th:href="'/product/' +${product.id}" class="text-dark">
-                        <img th:src="${product.imageUrl}" class="card-img-top" th:alt="${product.productName}" height="400">
+                        <img th:src="${product.imageUrl}" class="card-img-top" th:alt="${product.productName}" height="500">
                         <div class="card-body">
-                            <h4 class="card-title">[[${product.productName}]]</h4>
+                            <h5 class="card-title">[[${product.productName}]]</h5>
                             <p class="card-text">[[${product.productDetail}]]</p>
-                            <h3 class="card-title text-danger">[[${product.productPrice}]]원</h3>
+                            <p class="card-text" data-th-text="${'&#8361;'+ #numbers.formatInteger(product.productPrice, 3, 'COMMA') + '원'}"></p>
                         </div>
                     </a>
                 </div>

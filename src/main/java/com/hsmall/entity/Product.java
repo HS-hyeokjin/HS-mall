@@ -22,6 +22,7 @@ public class Product extends BaseEntity{
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name="product_category")
     private ProductCategory productCategory;
 
     private String productName;
@@ -44,4 +45,5 @@ public class Product extends BaseEntity{
         this.productStatus = productFormDto.getProductStatus();
         this.productCategory = productFormDto.getProductCategory();
     }
+
 }

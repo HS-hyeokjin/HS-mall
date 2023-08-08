@@ -1,5 +1,6 @@
 package com.hsmall.repository;
 
+import com.hsmall.constant.ProductCategory;
 import com.hsmall.constant.ProductStatus;
 import com.hsmall.dto.MainProductDto;
 import com.hsmall.dto.ProductSearchDto;
@@ -9,6 +10,7 @@ import com.hsmall.entity.QProduct;
 import com.hsmall.entity.QProductImage;
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
@@ -95,12 +97,15 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom{
                                 product.productName,
                                 product.productDetail,
                                 productImage.imageUrl,
-                                product.productPrice)
+                                product.productPrice,
+                                product.productCategory
+                                )
                 )
                 .from(productImage)
                 .join(productImage.product, product)
                 .where(productImage.repImageYn.eq("Y"))
                 .where(productNameLike(productSearchDto.getSearchQuery()))
+                .where(product.productCategory.eq(ProductCategory.outer))
                 .orderBy(product.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -112,6 +117,7 @@ public class ProductRepositoryCustomImpl implements ProductRepositoryCustom{
                 .join(productImage.product, product)
                 .where(productImage.repImageYn.eq("Y"))
                 .where(productNameLike(productSearchDto.getSearchQuery()))
+                .where(product.productCategory.eq(ProductCategory.outer))
                 .fetchOne()
                 ;
 
